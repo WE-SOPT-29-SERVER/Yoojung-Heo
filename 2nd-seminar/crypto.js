@@ -22,3 +22,23 @@ const callback = (err, derivedKey) => {
     console.log(derivedKey.toString("hex"));
 };
 crypto.pbkdf2(password, salt, iterations, keylen, digest, callback);
+
+const encrypt = (salt, password) => {
+    crypto.pbkdf2(
+        password,
+        salt.toString(),
+        1,
+        32,
+        "sha512",
+        (err, derivedKey) => {
+            if (err) throw err;
+            const hashed = derivedKey.toString("hex");
+            console.log("salt: ", salt);
+            console.log("hashed: ", hashed);
+        },
+    );
+};
+
+const password2 = "fl0wer";
+const salt2 = crypto.randomBytes(32).toString("hex");
+encrypt(salt2, password2);
