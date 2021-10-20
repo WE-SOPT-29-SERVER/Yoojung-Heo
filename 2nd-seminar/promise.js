@@ -6,6 +6,7 @@ promise는 resolve/reject 값을 담은 promise 자체를 리턴한다
 resolve를 리턴할 때는 then을 통해서, reject를 리턴할 때는 catch를 통해서 반환값을 처리하면 된다
 */
 
+
 const cook = (callback, timeout) => {
     setTimeout(callback, timeout);
 }
@@ -52,8 +53,26 @@ ramenRecipe()
     .then(progress => delayThreeMinutes(progress))
     .then(progress => console.log(progress))
 
-//promise 퀴즈 복습
 /*
+async & await
+async는 암묵적으로 promise를 리턴한다.
+await는 promise를 기다린다.
+await를 쓰면 then을 쓰지 않고도 promise를 처리할 수 있음.
+=> 더 깔끔하고 보기 좋게 체인을 연결할 수 있다.
+*/
+
+const asyncRamen = async () => {
+    const step1 = await ramenRecipe();
+    const step2 = await boilWater(step1);
+    const step3 = await putTheRamenAndSoupPowder(step2);
+    const finish = await delayThreeMinutes(step3);
+    console.log(finish);
+};
+
+
+
+//promise 퀴즈 복습
+
 const members = require("./members");
 
 const getOnline = members => {
@@ -99,4 +118,17 @@ getOnline(members)
 getOffline(members)
     .then(getYB)
     .then(console.log)
-*/
+
+//async 퀴즈 복습
+
+const getOnlineOB = async function () {
+    const asyncOnline = await getOnline(members);
+    const asyncOnlineOB = await getOB(asyncOnline);
+    console.log(asyncOnlineOB);
+};
+
+const getOfflineYB = async () => {
+    const asyncOffline = await getOffline(members);
+    const asyncOfflineYB = await getYB(asyncOffline);
+    console.log(asyncOfflineYB);
+};
