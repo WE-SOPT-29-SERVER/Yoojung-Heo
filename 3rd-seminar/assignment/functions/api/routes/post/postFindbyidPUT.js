@@ -28,7 +28,7 @@ module.exports = async(req, res) => {
         );
     };
 
-    newPost = {
+    const newPost = {
         id,
         userID,
         date: existPost.date,

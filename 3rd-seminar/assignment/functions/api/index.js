@@ -1,4 +1,4 @@
-const functions = require("firebase-functions");
+ const functions = require("firebase-functions");
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use("/", require("./routes"));
 
 // route 폴더에 우리가 저장할 경로가 아닌 다른 경로로 요청이 올 경우,
-// 잘못된 경로로 요청이 들어왔다는 메시지를 크라이언트에 보냄
+// 잘못된 경로로 요청이 들어왔다는 메시지를 클라이언트에 보냄
 app.use("*", (res, req) => {
     res.statusCode(404).json({
         status: 404,
