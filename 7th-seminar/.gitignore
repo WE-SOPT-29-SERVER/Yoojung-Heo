@@ -67,3 +67,6 @@ node_modules/
 
 # Firebase service account
 wesopt29-uju-firebase-adminsdk-rvqlj-9e5b9187ef.json
+
+# Firebase auth config
+firebaseClient.js
